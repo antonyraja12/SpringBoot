@@ -1,0 +1,141 @@
+package com.crud.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Calendar;
+import java.sql.Date;
+import java.util.UUID;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.springframework.stereotype.Component;
+import com.crud.model.CrudModel;
+import com.crud.model.Response;
+import com.crud.services.CrudServices;
+
+
+@Component
+public class CrudDao implements CrudServices {
+	String url = "jdbc:mysql://127.0.0.1:3306/crud", username = "root", password = "Dev@2001";
+	Response res = new Response();
+	@Override
+	public Response insertUser(CrudModel input) {
+		
+		String uuid = UUID.randomUUID().toString();
+		Date date = new Date(Calendar.getInstance().getTime().getTime());
+		input.setUpdatedDate(date);
+
+		try
+
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			try (Connection con = DriverManager.getConnection(url, username, password);
+					Statement st = con.createStatement();) {
+				String insertQuery = "INSERT INTO personel_details(s_no,first_name,last_name,gender,email,password,phone_no,updated_date)"
+						+ "VALUES('" + uuid + "','" + input.getFirstName() + "','" + input.getLastName() + "','"
+						+ input.getGender() + "','" + input.geteMail() + "','" + input.getPassword() + "',"
+						+ input.getPhoneNumber() + ",'" + input.getUpdatedDate() + "');";
+				System.out.println(insertQuery);
+				st.executeUpdate(insertQuery);
+				res.setResponseCode(200);
+				res.setResponseMsg("Success");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				res.setResponseCode(500);
+				res.setResponseMsg("error");
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public Response getAllUser() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			try (Connection con1 =DriverManager.getConnection(url,username,password);
+					Statement st1=con1.createStatement();){
+				String getAllUserQuery="select*from personel_details;";
+				System.out.println(getAllUserQuery);
+				ResultSet rs=st1.executeQuery(getAllUserQuery);
+				JSONArray Jsonarray=new JSONArray();
+				while(rs.next()) {
+					JSONObject Jobj=new JSONObject();
+					Jobj.put("sNo",rs.getString("s_no"));
+					Jobj.put("firstName",rs.getString("first_name"));
+					Jobj.put("lastName",rs.getString("last_name"));
+					Jobj.put("gender", rs.getString("gender"));
+					Jobj.put("eMail",rs.getString("email"));
+					Jobj.put("password", rs.getString("password"));
+					Jobj.put("phoneNumber", rs.getLong("phone_no"));
+					Jobj.put("updatedDate",rs.getDate("updated_date"));
+					
+					Jsonarray.add(Jobj);
+				}
+				res.setResponseCode(200);
+				res.setResponseMsg("success");
+				res.setJdata(Jsonarray);
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+				res.setResponseCode(500);
+				
+				res.setResponseMsg("Error");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Response getoneData(String id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			try(Connection con= DriverManager.getConnection(url, username, password);
+				Statement st = con.createStatement();){
+				String getSingleData="select*from personal_details where s_no='"+id+"';"; 
+				System.out.println(getSingleData);
+				ResultSet rs=st.executeQuery(getSingleData);
+				JSONObject Jobj=new JSONObject();
+				while(rs.next()) {
+					Jobj.put("sNo",rs.getString("s_no"));
+					Jobj.put("firstName",rs.getString("first_name"));
+					Jobj.put("lastName",rs.getString("last_name"));
+					Jobj.put("gender", rs.getString("gender"));
+					Jobj.put("eMail",rs.getString("email"));
+					Jobj.put("password", rs.getString("password"));
+					Jobj.put("phoneNumber", rs.getLong("phone_no"));
+					Jobj.put("updatedDate",rs.getDate("updated_date"));
+					
+				
+				}
+				res.setResponseCode(200);
+				res.setResponseMsg("success");
+				res.setJdata(Jobj);
+			
+			} catch (Exception e) {
+			e.printStackTrace();
+			res.setResponseCode(500);
+			res.setResponseMsg("error");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	@Override
+	public Response updateDetaile(String email) {
+		// TODO Auto-generated method stub
+		return res;
+	}
+	
+}

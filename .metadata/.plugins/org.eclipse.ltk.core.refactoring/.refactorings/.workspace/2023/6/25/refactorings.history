@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;JSBCCred&apos; to &apos;JDBC_crud&apos;&#x0D;&#x0A;- Original element: &apos;JSBCCred&apos;&#x0D;&#x0A;- Renamed element: &apos;JSBCCred&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;JSBCCred&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=JSBCCred" name="JDBC_crud" references="true" stamp="1687160630928" version="1.0"/>
+</session>

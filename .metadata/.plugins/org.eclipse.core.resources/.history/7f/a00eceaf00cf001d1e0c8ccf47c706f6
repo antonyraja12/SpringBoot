@@ -1,0 +1,96 @@
+package com.example.crud.jpa.service;
+
+import java.security.interfaces.RSAKey;
+import java.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import com.example.crud.jpa.model.JPAModel;
+import com.example.crud.jpa.model.Response;
+import com.example.crud.jpa.repository.JPARepository;
+
+@Service
+public class JPAService {
+
+	Response res = new Response();
+
+	@Autowired
+	JPARepository jpaRepository;
+
+	public Response addUser(JPAModel input) {
+
+		try {
+			res.setjData(jpaRepository.save(input));
+			res.setRescode(200);
+			res.setResmsg("Success");
+
+		} catch (Exception e) {
+			res.setResmsg("Error");
+			res.setRescode(500);
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	public Response showAllUser() {
+
+		try {
+			res.setjData(jpaRepository.findAll());
+			res.setRescode(200);
+			res.setResmsg("Success");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setResmsg("Error");
+			res.setRescode(500);
+		}
+
+		return res;
+	}
+
+	public Optional<JPAModel> getOneUser(String id) {
+
+		return jpaRepository.findById(id);
+	}
+
+
+	public Response UpdateMail(String id, String email) {
+		 try {
+			Optional<JPAModel> userdDB=jpaRepository.findById(id); 
+			if(userdDB.isPresent()) {
+				JPAModel data = userdDB.get();
+				data.setEmail(email);
+				jpaRepository.save(data);
+			}
+			res.setjData(userdDB);
+			res.setResmsg("Success");
+			res.setRescode(200);
+			res.setData("Email updated Successfully");
+		 }
+		 catch (Exception e) {
+			 e.printStackTrace();
+			 res.setResmsg("Error");
+			 res.setRescode(500);
+		}
+		 
+		return res;
+	}
+
+	public Response DeleteOneUser(String id) {
+		 try {
+			 jpaRepository.deleteById(id);
+			 res.setData("Removed Successfully");
+			 res.setRescode(200);
+			 res.setResmsg("success");
+			 
+			
+			
+		} catch (Exception e) {
+			 e.printStackTrace();
+			 res.setResmsg("Error");
+			 res.setRescode(500);
+		}
+		return res;
+	}
+
+}

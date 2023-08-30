@@ -1,0 +1,22 @@
+package module1practice;
+
+public class HashAgileTechQ {
+	
+	public static void main(String[] args) {
+
+		int	fvalue=0,lvalue=1;
+		int tvalue=fvalue+lvalue;
+		
+		for(int i=1;i<6;i++) {
+		for(int j=1;j<=tvalue;j++) {
+			System.out.print(tvalue);
+			
+			
+			
+		}
+		
+		}
+		
+	}
+
+}

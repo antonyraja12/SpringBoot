@@ -1,0 +1,56 @@
+package com.example.crud.jpa.controller;
+
+import java.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.example.crud.jpa.model.JPAModel;
+import com.example.crud.jpa.service.JPAService;
+
+@CrossOrigin("*")
+@RestController
+@RequestMapping("/jpa/crud")
+public class JPAController {
+
+	@Autowired
+	private JPAService jpaService;
+	
+	@PostMapping("/insert")
+	public ResponseEntity<?> addUser(@RequestBody JPAModel input){
+		return ResponseEntity.ok( jpaService.addUser(input));
+	}
+	
+	@GetMapping("/retrive")
+	public ResponseEntity<?> showAllUser() {
+		return ResponseEntity.ok(jpaService.showAllUser());
+	}
+	
+	@GetMapping("/byid/{id}")
+	public Optional<JPAModel>getOneUser(@PathVariable String id){
+		return jpaService.getOneUser(id);
+	}
+	
+	
+	
+	@PutMapping("/updateMail/{id},{email}")
+	public  ResponseEntity<?>UpadteEmail(@PathVariable String id,@PathVariable String email){
+		return ResponseEntity.ok(jpaService.UpdateMail(id,email));
+	
+		}
+	@DeleteMapping("/del1/{id}")
+	public ResponseEntity<?> DeleteOneUser(@PathVariable String id){
+		return ResponseEntity.ok(jpaService.DeleteOneUser(id));
+	}
+	
+	
+	
+}

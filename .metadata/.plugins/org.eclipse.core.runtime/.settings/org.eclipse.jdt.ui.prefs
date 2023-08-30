@@ -1,0 +1,12 @@
+content_assist_autoactivation_triggers_java=.@(\#&$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="java.lang.Enum"><rhs name\="javax.persistence.GenerationType"/></lhs><lhs name\="java.lang.constant.Constable"><rhs name\="javax.persistence.GenerationType"/><rhs name\="java.lang.String"/></lhs><lhs name\="org.springframework.http.HttpEntity"><rhs name\="org.springframework.http.ResponseEntity"/></lhs><lhs name\="org.springframework.http.ResponseEntity"><rhs name\="org.springframework.http.ResponseEntity"/></lhs><lhs name\="com.example.crud.jpa.model.Response"><rhs name\="com.example.crud.jpa.model.Response"/></lhs><lhs name\="java.util.Iterator"><rhs name\="java.util.Scanner"/></lhs><lhs name\="java.io.Closeable"><rhs name\="java.util.Scanner"/></lhs><lhs name\="java.lang.AutoCloseable"><rhs name\="java.util.Scanner"/></lhs><lhs name\="java.lang.CharSequence"><rhs name\="java.lang.String"/></lhs><lhs name\="java.lang.constant.ConstantDesc"><rhs name\="java.lang.String"/></lhs><lhs name\="module1practice.Factorial"><rhs name\="module1practice.Factorial"/></lhs><lhs name\="module1practice.sumofdigit"><rhs name\="module1practice.sumofdigit"/></lhs><lhs name\="org.passay.Rule"><rhs name\="org.passay.CharacterRule"/></lhs><lhs name\="org.passay.CharacterRule"><rhs name\="org.passay.CharacterRule"/></lhs><lhs name\="org.passay.CharacterData"><rhs name\="org.passay.EnglishCharacterData"/></lhs><lhs name\="org.passay.PasswordGenerator"><rhs name\="org.passay.PasswordGenerator"/></lhs></history>
+content_assist_number_of_computers=15
+content_assist_proposals_background=255,255,255
+content_assist_proposals_foreground=0,0,0
+eclipse.preferences.version=1
+org.eclipse.jdt.ui.formatterprofiles.version=22
+sourceHoverBackgroundColor=255,255,225
+spelling_locale_initialized=true
+typefilter_migrated_2=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

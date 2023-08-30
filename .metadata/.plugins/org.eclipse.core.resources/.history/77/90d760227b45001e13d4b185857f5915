@@ -1,0 +1,13 @@
+package com.example.demo.mail;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+public class HelloworldProject {
+
+@RequestMapping ("/hello")
+public String hello() {
+	return "Hello World";
+}
+
+
+}
